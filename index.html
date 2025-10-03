@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Piano Game</title>
+    <link rel="icon" href="https://fav.farm/🎼" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="app.js" defer></script>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="icon" href="https://guess-sound-game🎹🎼" />
+  </head>
+
+  <body
+    class="bg-blue-100 text-[#B2B2B2] font-sans m-0 p-0 flex items-center justify-center min-h-[500px] md:min-h-[900px]"
+  >
+    <div class="flex items-center flex-col-reverse">
+      <div class="bg-white p-5 md:p-10 mt-3 md:lkmt-5 rounded-2xl">
+        <div
+          class="flex items-center justify-between gap-5 md:gap-10 mb-3 md:mb-6"
+        >
+          <div class="text-xl">
+            <span class="font-semibold">Уровень:</span>
+            <span id="level" class="text-yellow-300 ml-2">-</span>
+          </div>
+          <div class="text-xl">
+            <span class="font-semibold">Нот в последовательности:</span>
+            <span id="sequence-length" class="text-yellow-300 ml-2">-</span>
+          </div>
+        </div>
+
+        <div class="flex justify-center space-x-4 mb-8">
+          <button
+            id="repeat-btn"
+            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 transform hover:scale-105 hidden"
+          >
+            Повторить мелодию
+          </button>
+          <button
+            id="start-btn"
+            class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 transform hover:scale-105"
+          >
+            Начать игру
+          </button>
+        </div>
+
+        <div class="bg-gray-100 p-4 px-0 rounded-lg mb-2">
+          <p id="game-status" class="text-center text-lg">
+            Нажмите "Начать игру", чтобы начать
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-[#141414] rounded-2xl p-10 md:p-15 md:py-10 items-center">
+        <header
+          class="text-[#B2B2B2] flex items-center justify-between gap-5 md:gap-10"
+        >
+          <h2 class="text-xl font-bold">Piano game</h2>
+          <div class="column volume-slider flex items-center">
+            <span class="font-medium mr-2 md:mr-4">Volume</span
+            ><input
+              type="range"
+              min="0"
+              max="1"
+              value="0.5"
+              step="any"
+              class="accent-white"
+            />
+          </div>
+
+          <div class="column keys-checkbox flex items-center">
+            <span class="font-medium mr-2 md:mr-4">Show keys</span
+            ><input
+              type="checkbox"
+              class="appearance-none h-[20px] w-[40px] md:w-[50px] cursor-pointer relative rounded-xl bg-[#4B4B4B] before:content-[''] before:absolute before:top-7/9 before:left-1 md:before:left-[5px] before:size-3 before:rounded-full before:bg-[#8c8c8c] before:-translate-y-1/2 before:transition-all before:duration-300 before:ease-in-out checked:before:left-[10px] md:checked:before:left-[35px] checked:before:bg-white"
+              checked
+            />
+          </div>
+        </header>
+
+        <ul class="piano-keys flex mt-5 md:mt-10 uppercase">
+          <li
+            class="key white relative select-none cursor-pointer w-18 h-60 bg-white rounded-md border-2 border-solid border-black"
+            data-key="a"
+          >
+            <span class="absolute bottom-5 w-[100%] text-center">a</span>
+          </li>
+          <li
+            class="key balck relative select-none cursor-pointer z-2 ml-[-22px] mr-[-22px] w-11 h-40 active:bg-gray-900 rounded-b-md bg-black"
+            data-key="s"
+          >
+            <span class="absolute bottom-5 w-[100%] text-center">s</span>
+          </li>
+          <li
+            class="key white relative select-none cursor-pointer w-18 h-60 bg-white active:bg-gray-200 rounded-md border-2 border-solid border-black"
+            data-key="d"
+          >
+            <span class="absolute bottom-5 w-[100%] text-center">d</span>
+          </li>
+          <li
+            class="key black relative select-none cursor-pointer z-2 ml-[-22px] mr-[-22px] w-11 h-40 active:bg-gray-900 rounded-b-md bg-black"
+            data-key="f"
+          >
+            <span class="absolute bottom-5 w-[100%] text-center">f</span>
+          </li>
+          <li
+            class="key white relative select-none cursor-pointer w-18 h-60 bg-white active:bg-gray-200 rounded-md border-2 border-solid border-black"
+            data-key="g"
+          >
+            <span class="absolute bottom-5 w-[100%] text-center">g</span>
+          </li>
+          <li
+            class="key white relative select-none cursor-pointer w-18 h-60 bg-white active:bg-gray-200 rounded-md border-2 border-solid border-black"
+            data-key="h"
+          >
+            <span class="absolute bottom-5 w-[100%] text-center">h</span>
+          </li>
+          <li
+            class="key black relative select-none cursor-pointer z-2 ml-[-22px] mr-[-22px] w-11 h-40 active:bg-gray-900 rounded-b-md bg-black"
+            data-key="j"
+          >
+            <span class="absolute bottom-5 w-[100%] text-center">j</span>
+          </li>
+          <li
+            class="key white relative select-none cursor-pointer w-18 h-60 bg-white active:bg-gray-200 rounded-md border-2 border-solid border-black"
+            data-key="k"
+          >
+            <span class="absolute bottom-5 w-[100%] text-center">k</span>
+          </li>
+          <li
+            class="key black relative select-none cursor-pointer z-2 ml-[-22px] mr-[-22px] w-11 h-40 active:bg-gray-900 rounded-b-md bg-black"
+            data-key="l"
+          >
+            <span class="absolute bottom-5 w-[100%] text-center">l</span>
+          </li>
+          <li
+            class="key white relative select-none cursor-pointer w-18 h-60 bg-white active:bg-gray-200 rounded-md border-2 border-solid border-black"
+            data-key="o"
+          >
+            <span class="absolute bottom-5 w-[100%] text-center">o</span>
+          </li>
+          <li
+            class="key black relative select-none cursor-pointer z-2 ml-[-22px] mr-[-22px] w-11 h-40 active:bg-gray-900 rounded-b-md bg-black"
+            data-key="p"
+          >
+            <span class="absolute bottom-5 w-[100%] text-center">p</span>
+          </li>
+          <li
+            class="key white relative select-none cursor-pointer w-18 h-60 bg-white active:bg-gray-200 rounded-md border-2 border-solid border-black"
+            data-key=";"
+          >
+            <span class="absolute bottom-5 w-[100%] text-center">;</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
